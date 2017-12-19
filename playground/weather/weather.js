@@ -6,16 +6,16 @@ var getWeather = (latitude, longitude, callback) => {
     json: true
   }, (error, response, body) => {
     if (error) {
-      callback('Unable to connect to DarkSky server.');
+      callback('No se puede conectar al servidor DarkSky');
     } else if (response.statusCode === 400) {
-      callback('Unable to fetch weather.');
+      callback('No se puede obtener el clima');
     } else if (!error && response.statusCode === 200) {
       callback(undefined, {
         temperature: body.currently.temperature,
         apparentTemperature: body.currently.apparentTemperature
       })
     } else {
-      callback('Unable to fetch weather.');
+      callback('No se puede obtener el clima');
     }
   });
 };

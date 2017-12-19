@@ -19,7 +19,7 @@ var geocodeUrl = `http://maps.googleapis.com/maps/api/geocode/json?address=${enc
 
 axios.get(geocodeUrl).then((response) => {
   if (response.data.status === 'ZERO_RESULTS') {
-    throw new Error('Unable to find that address.')
+    throw new Error('No se pudo encontrar la dirección.')
   }
   var lat = response.data.results[0].geometry.location.lat;
   var lng = response.data.results[0].geometry.location.lng;
@@ -29,10 +29,10 @@ axios.get(geocodeUrl).then((response) => {
 }).then((response) => {
   var temperature = response.data.currently.temperature;
   var apparentTemperature = response.data.currently.apparentTemperature;
-  console.log(`It's currently ${temperature}. It's feel like ${apparentTemperature}`);
+  console.log(`La temperatura actual es: ${temperature}. Se siente como ${apparentTemperature}`);
 }).catch((e) => {
   if (e.code === 'ENOTFOUND') {
-    console.log('Unable to connect to API servers.');
+    console.log('No se pudo conectar con el servidor');
   } else {
     console.log(e.message);
   }
